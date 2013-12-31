@@ -16,7 +16,7 @@ AndroidAnzhiGame
 * 参照`BuildAPK`文件夹下的命令行
 
 
-## 银联兼容处理方式
+## 银联兼容（1）使用apktool
 * 使用apktool 反编译修改`res/raw`文件夹下的0字节文件，往里面随便加内容。
 * 使用apktool 回编译
 * 签名优化后 便是`aneTest`文件夹下的`anzhi.apk`
@@ -33,7 +33,15 @@ AndroidAnzhiGame
 > 
 > 优化举例:`zipalign -f -v 4 v_new_signed.apk anzhi.apk`
 
+## 银联兼容（2）修改ADT
+* 就目前我所了解的情况，可以通过修改AIRSDK的打包逻辑来解决此问题
+* 我的博客中已经放出了经过我修改的打包工具，有兴趣的朋友可联系跟进
+* 此方式不适用于对JAVA逆向不甚了解的朋友
 
+## 银联兼容（3）修改Dalvik汇编代码
+* 主要思路是通过修改反编译出来的`Mk.smali`
+* 第`1705`行去掉音频文件操作代码便可
+* 此方式不适用与对Dalvik汇编不甚了解的朋友
 
 ## DEMO和参数配置
 * 参照`aneTest`文件夹下的源码 和 APK文件
